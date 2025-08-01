@@ -1,0 +1,7 @@
+"use strict";(()=>{var e={};e.id=91,e.ids=[91],e.modules={145:e=>{e.exports=require("next/dist/compiled/next-server/pages-api.runtime.prod.js")},8275:(e,s,r)=>{r.r(s),r.d(s,{config:()=>d,default:()=>l,routeModule:()=>m});var t={};r.r(t),r.d(t,{default:()=>handler});var a=r(1802),o=r(7153),n=r(6249);let i=require("nodemailer");var u=r.n(i);async function handler(e,s){if("POST"!==e.method)return s.status(405).json({message:"Method not allowed"});let{name:r,email:t,message:a}=e.body;if(!r||!t||!a)return s.status(400).json({message:"Missing required fields"});let o=u().createTransport({host:"smtp-relay.brevo.com",port:587,auth:{user:process.env.BREVO_SMTP_USER,pass:process.env.BREVO_SMTP_PASS}}),n={from:'"Navpreet Singh" <navpreetsingh@iammanpreetsingh.com>',to:"navpreets425@gmail.com",replyTo:t,subject:"Important - Portfolio Submission Form Received",text:`You received a submission form from your website:
+
+Name: ${r}
+Email: ${t}
+
+Message:
+${a}`};try{return await o.sendMail(n),s.status(200).json({message:"Message sent successfully"})}catch(e){return console.error("Email send error:",e),s.status(500).json({message:"Failed to send email",error:e})}}let l=(0,n.l)(t,"default"),d=(0,n.l)(t,"config"),m=new a.PagesAPIRouteModule({definition:{kind:o.x.PAGES_API,page:"/api/contact",pathname:"/api/contact",bundlePath:"",filename:""},userland:t})}};var s=require("../../webpack-api-runtime.js");s.C(e);var __webpack_exec__=e=>s(s.s=e),r=s.X(0,[222],()=>__webpack_exec__(8275));module.exports=r})();
